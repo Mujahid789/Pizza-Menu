@@ -1,12 +1,14 @@
+import PizzaList from "./components/PizzaList.jsx"
 
 function App() {
   
 
   return (
     <>  
-      <div>
-        <h1>Welcome To Pizza Shop</h1>
-      </div>
+      
+        {/* <h1 style={{color:"red", textAlign:"center", marginBottom:"80px"}}>Welcome To Pizza Shop</h1> */}
+        <PizzaList/>
+        
     </>
   )
 }
