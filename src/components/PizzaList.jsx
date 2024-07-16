@@ -16,18 +16,21 @@ function PizzaList() {
 }
 
 function Menu(){
+  const pizza =pizzaData
+  // const pizza=piza.length
+
   return(
   <>
   <main className="menu">
     <h2>OUR MENU</h2>
-    <ul className="pizzas">
+    {pizza ? <ul className="pizzas">
     {pizzaData.map((pizza)=>( 
       <
     Pizza pizzaObject = {pizza} key={pizza.name}
     />
     ))}
     
-    </ul>
+    </ul>:null}
 
     {/* <Pizza/> */}
 
@@ -50,6 +53,8 @@ function Menu(){
 function Pizza(props){
     const profit=25
     const percentageProfit = Math.round((profit/100)*props.pizzaObject.price)
+
+    if(props.pizzaObject.soldOut) return null
   return(
   
     <li className="pizza">
@@ -78,12 +83,26 @@ function Footer(){
   const openHour =10
   const closeHour = 20
   
-  const open =hour>=openHour && hour<=closeHour
-  console.log(open);
-
+  const isOpen =hour>=openHour && hour<=closeHour
+  
   return <div>
-    <footer className="footer">{new Date().toLocaleString()}. We are currently open</footer>
+    <footer className="footer"> 
+      {isOpen ?(
+        <Order closeHour={closeHour}/>
+      ):<div className="order">
+      <p>We are CLOSED Now, Open at {openHour}:00 AM</p>
+      </div> }
+        </footer>
     </div>
+}
+
+function Order(props){
+return(
+<div className="order">
+        <p>We are OPEN until {props.closeHour}:00 PM Come visit us or order online</p>
+        <button className="btn">Order</button>
+        </div>
+        )
 }
 
 export default PizzaList
