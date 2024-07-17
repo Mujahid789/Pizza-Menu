@@ -23,14 +23,23 @@ function Menu(){
   <>
   <main className="menu">
     <h2>OUR MENU</h2>
-    {pizza ? <ul className="pizzas">
+    
+    {pizza ?
+    <>
+    <p>
+    Authentic Italian cuisine. 6 creative dishes to choose from. All
+    from our stone oven, all organic, all delicious.
+  </p>
+    <ul className="pizzas">
     {pizzaData.map((pizza)=>( 
       <
     Pizza pizzaObject = {pizza} key={pizza.name}
     />
     ))}
     
-    </ul>:null}
+    </ul></>:null
+    
+    }
 
     {/* <Pizza/> */}
 
@@ -50,19 +59,21 @@ function Menu(){
   )
   }
 
-function Pizza(props){
+function Pizza({pizzaObject}){
+  
+  console.log(pizzaObject);
     const profit=25
-    const percentageProfit = Math.round((profit/100)*props.pizzaObject.price)
+    const percentageProfit = Math.round((profit/100)*pizzaObject.price)
 
-    if(props.pizzaObject.soldOut) return null
+    // if(pizzaObject.soldOut) return null
   return(
   
-    <li className="pizza">
-    <img id="pzList" src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+    <li className={`pizza ${pizzaObject.soldOut?"sold-out":""}`}>
+    <img id="pzList" src={pizzaObject.photoName} alt={pizzaObject.name} />
     <div>
-    <h3>Name: {props.pizzaObject.name}</h3>
-    <h4>ingredients:{props.pizzaObject.ingredients}</h4>
-    <span>{props.pizzaObject.price+percentageProfit}</span>
+    <h3>Name: {pizzaObject.name}</h3>
+    <h4>ingredients:{pizzaObject.ingredients}</h4>
+    <span>Price: {pizzaObject.soldOut? "SOLD OUT":pizzaObject.price+percentageProfit}</span>
     </div>
     </li>
     
@@ -96,10 +107,10 @@ function Footer(){
     </div>
 }
 
-function Order(props){
+function Order({closeHour}){
 return(
 <div className="order">
-        <p>We are OPEN until {props.closeHour}:00 PM Come visit us or order online</p>
+        <p>We are OPEN until {closeHour}:00 PM Come visit us or order online</p>
         <button className="btn">Order</button>
         </div>
         )
