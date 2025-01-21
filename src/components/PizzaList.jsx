@@ -17,6 +17,7 @@ function PizzaList() {
 
 function Menu(){
   const pizza =pizzaData
+  // const pizza=piza.length
 
   return(
   <>
