@@ -108,7 +108,7 @@ function Footer() {
 }
 
 function Order({ closeHour }) {
-console.log(closeHour)
+
   return (
     <div className="order">
       <p>We are OPEN until {closeHour}:00 PM Come visit us or order online</p>
