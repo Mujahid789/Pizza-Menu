@@ -97,6 +97,7 @@ function Footer() {
   const isOpen = hour >= openHour && hour <= closeHour
 
   return <div>
+    <h1>foter</h1>
     <footer className="footer">
       {isOpen ? (
         <Order closeHour={closeHour} />
